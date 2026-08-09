@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap');
+
+:root {
+  /* Warm Premium Beige Palette & Suited Colors */
+  --bg-beige: #F5EBE0;
+  --bg-beige-card: #FCF8F2;
+  --bg-beige-accent: #E8D8C8;
+  --bg-beige-dark: #DBC8B5;
+  
+  --color-purple: #3B0954;
+  --color-maroon: #58111A;
+  --color-magenta: #8A0B5D;
+  --color-rani-pink: #E31C79;
+  --color-orange: #D95D09;
+  --color-teal: #0D9488;
+  --color-royal-blue: #1E3C72;
+  --color-gold: #C59B27;
+  --color-gold-bright: #D4AF37;
+  
+  --text-dark: #2C1A1D;
+  --text-muted: #6E595C;
+  --text-light: #F9F5FF;
+  --text-gold: #C59B27;
+  
+  /* Fonts */
+  --font-serif: 'Marcellus', 'Rozha One', Georgia, serif;
+  --font-heading: 'Rozha One', 'Marcellus', serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Shadows & Glass */
+  --shadow-soft: 0 10px 30px rgba(44, 26, 29, 0.06);
+  --shadow-hover: 0 16px 36px rgba(138, 11, 93, 0.12);
+  --shadow-gold: 0 8px 25px rgba(197, 155, 39, 0.2);
+  --shadow-deep: 0 20px 50px rgba(44, 26, 29, 0.15);
+  
+  --glass-bg: rgba(245, 235, 224, 0.88);
+  --glass-border: rgba(197, 155, 39, 0.3);
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-beige);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(227, 28, 121, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(197, 155, 39, 0.04) 0%, transparent 40%);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-rani-pink);
+  color: #FFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-beige);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-magenta);
+  border-radius: 5px;
+  border: 2px solid var(--bg-beige);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rani-pink);
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #C59B27 50%, #8A6810 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-magenta-gradient {
+  background: linear-gradient(135deg, #E31C79 0%, #8A0B5D 60%, #3B0954 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Bandhani & Festive Pattern Overlays */
+.bandhani-pattern {
+  background-image: radial-gradient(var(--color-gold) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.15;
+}
+
+.bandhani-overlay-dark {
+  background-image: 
+    radial-gradient(rgba(197, 155, 39, 0.25) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(227, 28, 121, 0.15) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Button Base */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-rani-pink) 0%, var(--color-magenta) 100%);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(227, 28, 121, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(227, 28, 121, 0.45);
+  border-color: var(--color-gold);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  background: #FCF8F2;
+  color: var(--color-purple);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid var(--color-gold);
+  box-shadow: 0 4px 15px rgba(44, 26, 29, 0.06);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+  background: var(--color-purple);
+  color: #FFFFFF;
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(59, 9, 84, 0.2);
+}
+
+/* Badge Styles */
+.badge-festive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(197, 155, 39, 0.15);
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  color: #8A0B5D;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.badge-dark-gold {
+  background: rgba(197, 155, 39, 0.18);
+  border: 1px solid var(--color-gold);
+  color: var(--color-purple);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
