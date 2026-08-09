@@ -32,9 +32,6 @@ dist/
 dist-ssr/
 *.local
 
-# Heavy media files (>100MB) for clean GitHub repository syncing
-public/videos/*.mp4
-
 # Editor directories
 .vscode/*
 !.vscode/extensions.json
