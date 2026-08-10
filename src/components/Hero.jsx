@@ -163,7 +163,7 @@ export default function Hero({ onOpenReserve }) {
 
       <div className="container" style={{ position: 'relative', zIndex: 5 }}>
         <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '48px', alignItems: 'center' }}>
-          
+
           {/* Left Column: Hero Animated Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -347,7 +347,7 @@ export default function Hero({ onOpenReserve }) {
                 <Calendar size={20} color="var(--color-rani-pink)" />
                 <div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Starts</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--color-purple)' }}>1st Aug, 2026</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--color-purple)' }}>September 2026</div>
                 </div>
               </div>
 
@@ -444,7 +444,7 @@ export default function Hero({ onOpenReserve }) {
                     transition: 'transform 0.8s ease',
                   }}
                 />
-                
+
                 {/* Floating Bottom Card Tag */}
                 <div
                   style={{

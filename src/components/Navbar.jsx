@@ -98,7 +98,7 @@ export default function Navbar({ onOpenReserve }) {
                   display: 'block',
                 }}
               >
-                GARBA & DANDIYA COMMUNITY
+                GARBA & DANDIYA
               </span>
             </div>
           </a>

@@ -236,3 +236,104 @@ h1, h2, h3, h4, .font-serif {
     padding: 0 16px;
   }
 }
+
+/* Floating Mobile Action Buttons (Phone - Bottom Left, WhatsApp - Bottom Right) */
+.floating-mobile-actions {
+  display: block !important;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 24px;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.floating-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.floating-btn:active {
+  transform: scale(0.92);
+}
+
+.floating-phone {
+  left: 20px;
+  background: linear-gradient(135deg, #E31C79 0%, #8A0B5D 100%);
+  border: 2px solid #D4AF37;
+}
+
+.floating-whatsapp {
+  right: 20px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: 2px solid #25D366;
+}
+
+.floating-pulse-phone, .floating-pulse-whatsapp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.floating-pulse-phone {
+  animation: floatPulsePhone 2s infinite;
+}
+
+.floating-pulse-whatsapp {
+  animation: floatPulseWhatsapp 2s infinite;
+}
+
+@keyframes floatPulsePhone {
+  0% {
+    box-shadow: 0 0 0 0 rgba(227, 28, 121, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(227, 28, 121, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(227, 28, 121, 0);
+  }
+}
+
+@keyframes floatPulseWhatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (max-width: 576px) {
+  .floating-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 18px;
+  }
+  .floating-phone {
+    left: 16px;
+  }
+  .floating-whatsapp {
+    right: 16px;
+  }
+}
+
+
