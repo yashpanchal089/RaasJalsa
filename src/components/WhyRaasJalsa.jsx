@@ -1,48 +1,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Music, Smile, ShieldAlert, Zap, Users, Flame } from 'lucide-react';
+import { Sparkles, Music, Smile, Zap, Users, Flame, ArrowRight } from 'lucide-react';
 
 export default function WhyRaasJalsa() {
   const cards = [
     {
       num: '01',
-      title: 'LEARN AUTHENTIC GARBA',
-      desc: 'Learn proper Garba movements, authentic footwork, posture, and traditional rhythmic steps.',
+      tag: 'AUTHENTIC STEPS',
+      title: 'TRADITIONAL GARBA',
+      desc: 'Master authentic footwork, body grace, and Gujarati rhythm.',
+      action: 'MASTER THE STEPS ⚡',
       icon: Music,
       accent: '#E31C79',
     },
     {
       num: '02',
+      tag: 'ZERO EXPERIENCE',
       title: 'BEGINNER FRIENDLY',
-      desc: 'No previous dance experience required! Step-by-step breakdown designed for all skill levels.',
+      desc: 'Step-by-step guidance designed for absolute first-timers.',
+      action: 'START LEARNING ➔',
       icon: Smile,
       accent: '#0D9488',
     },
     {
       num: '03',
+      tag: 'DANCE FLOOR VIBES',
       title: 'BUILD CONFIDENCE',
-      desc: 'Become completely comfortable, expressive, and graceful on the Garba floor.',
+      desc: 'Transform hesitation into effortless, graceful expression.',
+      action: 'FEEL CONFIDENT 🔥',
       icon: Zap,
       accent: '#FF6F00',
     },
     {
       num: '04',
-      title: 'LEARN DANDIYA',
-      desc: 'Develop stick rhythm, speed, hand-eye coordination, and dynamic partner Dandiya techniques.',
+      tag: 'DUAL STICK BEATS',
+      title: 'DANDIYA RHYTHM',
+      desc: 'Develop speed, stick coordination, and partner formations.',
+      action: 'PLAY THE BEAT 🥢',
       icon: Sparkles,
       accent: '#D4AF37',
     },
     {
       num: '05',
-      title: 'FESTIVE COMMUNITY',
-      desc: 'Meet like-minded people who share your love for Garba, culture, music, and Navratri celebrations.',
+      tag: 'FESTIVE ENERGY',
+      title: 'WARM COMMUNITY',
+      desc: 'Connect with passionate dancers who love Navratri celebrations.',
+      action: 'JOIN THE FAMILY 🎉',
       icon: Users,
       accent: '#8A0B5D',
     },
     {
       num: '06',
-      title: 'GET NAVRATRI READY',
-      desc: 'Prepare yourself to confidently participate and shine during the grand Navratri 2026 season!',
+      tag: 'NAVRATRI 2026',
+      title: 'FESTIVAL READY',
+      desc: 'Shine brightly on every Garba ground with complete mastery.',
+      action: 'SHINE ON FLOOR 🚀',
       icon: Flame,
       accent: '#E31C79',
     },
@@ -52,122 +64,173 @@ export default function WhyRaasJalsa() {
     <section
       id="why-us"
       style={{
-        padding: '100px 0',
+        padding: '50px 0',
         background: 'linear-gradient(180deg, #FAF6F0 0%, #FFF5EB 100%)',
         position: 'relative',
       }}
     >
       <div className="container">
-        {/* Header */}
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 60px auto' }}>
-          <span className="badge-festive" style={{ marginBottom: '16px' }}>
+        {/* Header - Compact Single Page View */}
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 28px auto' }}>
+          <span className="badge-festive" style={{ marginBottom: '10px', fontSize: '0.78rem', padding: '4px 12px' }}>
             <Sparkles size={14} color="var(--color-rani-pink)" />
             WHY CHOOSE US
           </span>
           <h2
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+              fontSize: 'clamp(1.8rem, 3.2vw, 2.7rem)',
               color: 'var(--bg-deep-purple)',
-              marginBottom: '16px',
+              marginBottom: '8px',
+              fontWeight: 800,
+              lineHeight: 1.15,
             }}
           >
-            WHY <span className="text-magenta-gradient">RAAS JALSA?</span>
+            AUTHENTIC BEATS. <span className="text-magenta-gradient">UNSTOPPABLE ENERGY.</span>
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem' }}>
-            Experience the perfect blend of authentic Gujarati culture, energetic teaching, and a warm festive community.
+          <p style={{ color: 'var(--text-dark)', fontSize: '0.98rem', fontWeight: 600, maxWidth: '600px', margin: '0 auto' }}>
+            Master authentic Garba footwork, Dandiya rhythms, and festive confidence in a warm community.
           </p>
         </div>
 
-        {/* 6 Cards Grid - 3 cols on desktop, 2 cols (2 per row) on mobile */}
+        {/* 6 Action-Oriented Cards Grid - Single Screen View */}
         <div className="why-cards-grid">
           {cards.map((card, idx) => {
             const IconComponent = card.icon;
             return (
               <motion.div
                 key={card.num}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(138, 11, 93, 0.1)' }}
                 style={{
-                  padding: '32px 28px',
-                  borderRadius: '24px',
-                  background: '#FFFBF5',
-                  border: '1px solid rgba(212, 175, 55, 0.3)',
-                  boxShadow: '0 10px 30px rgba(42, 8, 69, 0.05)',
+                  padding: '20px 20px',
+                  borderRadius: '18px',
+                  background: '#FFFFFF',
+                  border: '1.5px solid rgba(197, 155, 39, 0.35)',
+                  boxShadow: '0 8px 24px rgba(42, 8, 69, 0.05)',
                   position: 'relative',
                   overflow: 'hidden',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                   cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
                 }}
                 className="why-card"
               >
-                {/* Number Watermark */}
+                {/* Number Watermark Background */}
                 <span
                   style={{
                     position: 'absolute',
-                    top: '16px',
-                    right: '20px',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '2.4rem',
-                    color: 'rgba(212, 175, 55, 0.2)',
-                    fontWeight: 700,
+                    top: '10px',
+                    right: '14px',
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: '2.2rem',
+                    color: 'rgba(197, 155, 39, 0.15)',
+                    fontWeight: 900,
+                    lineHeight: 1,
+                    userSelect: 'none',
                   }}
                 >
                   {card.num}
                 </span>
 
-                {/* Icon Container */}
-                <div
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    background: `rgba(212, 175, 55, 0.12)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: card.accent,
-                    marginBottom: '20px',
-                    border: `1px solid ${card.accent}33`,
-                    transition: 'all 0.3s ease',
-                  }}
-                  className="card-icon"
-                >
-                  <IconComponent size={28} />
+                <div>
+                  {/* Top Action Pill Badge */}
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '3px 10px',
+                      borderRadius: '99px',
+                      background: `rgba(${card.accent === '#E31C79' ? '227, 28, 121' : card.accent === '#0D9488' ? '13, 148, 136' : '197, 155, 39'}, 0.12)`,
+                      color: card.accent,
+                      fontSize: '0.66rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.1em',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    {card.tag}
+                  </span>
+
+                  {/* Icon & Title Row */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                    <div
+                      style={{
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '12px',
+                        background: 'linear-gradient(135deg, #FAF4EB 0%, #FFF 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: card.accent,
+                        flexShrink: 0,
+                        border: `1.5px solid ${card.accent}35`,
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.03)',
+                      }}
+                      className="card-icon"
+                    >
+                      <IconComponent size={22} />
+                    </div>
+
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-serif)',
+                        fontSize: '1.15rem',
+                        fontWeight: 800,
+                        color: 'var(--bg-deep-purple)',
+                        margin: 0,
+                        letterSpacing: '0.01em',
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {card.title}
+                    </h3>
+                  </div>
+
+                  {/* Punchy Short Description */}
+                  <p
+                    style={{
+                      color: 'var(--text-dark)',
+                      fontSize: '0.88rem',
+                      fontWeight: 500,
+                      lineHeight: 1.45,
+                      marginBottom: '12px',
+                    }}
+                  >
+                    {card.desc}
+                  </p>
                 </div>
 
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '1.1rem',
-                    fontWeight: 800,
-                    color: 'var(--bg-deep-purple)',
-                    marginBottom: '10px',
-                    letterSpacing: '0.04em',
-                  }}
-                >
-                  {card.title}
-                </h3>
-
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  {card.desc}
-                </p>
-
-                {/* Bottom Decorative Gold Line Accent */}
+                {/* Bottom Action Pill Button */}
                 <div
                   style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '3px',
-                    background: `linear-gradient(90deg, transparent, ${card.accent}, transparent)`,
-                    opacity: 0.6,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingTop: '10px',
+                    borderTop: '1px solid rgba(197, 155, 39, 0.2)',
                   }}
-                />
+                >
+                  <span
+                    style={{
+                      fontSize: '0.76rem',
+                      fontWeight: 800,
+                      color: card.accent,
+                      letterSpacing: '0.04em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                    }}
+                  >
+                    {card.action}
+                  </span>
+                  <ArrowRight size={14} color={card.accent} />
+                </div>
               </motion.div>
             );
           })}
@@ -178,48 +241,43 @@ export default function WhyRaasJalsa() {
         .why-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 28px;
+          gap: 18px;
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
           .why-cards-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 16px !important;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
           }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
+          #why-us {
+            padding: 32px 0 !important;
+          }
           .why-cards-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 10px !important;
           }
           .why-card {
-            padding: 16px 12px !important;
-            border-radius: 18px !important;
-          }
-          .card-icon {
-            width: 40px !important;
-            height: 40px !important;
-            margin-bottom: 10px !important;
-            border-radius: 12px !important;
-          }
-          .card-icon svg {
-            width: 20px !important;
-            height: 20px !important;
+            padding: 12px 10px !important;
+            border-radius: 14px !important;
           }
           .why-card h3 {
-            font-size: 0.82rem !important;
-            margin-bottom: 6px !important;
-            line-height: 1.2 !important;
+            font-size: 0.88rem !important;
           }
           .why-card p {
             font-size: 0.74rem !important;
+            margin-bottom: 8px !important;
             line-height: 1.35 !important;
           }
-          .why-card span {
-            font-size: 1.4rem !important;
-            top: 8px !important;
-            right: 10px !important;
+          .card-icon {
+            width: 34px !important;
+            height: 34px !important;
+          }
+          .card-icon svg {
+            width: 17px !important;
+            height: 17px !important;
           }
         }
       `}</style>

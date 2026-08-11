@@ -73,7 +73,7 @@ export default function Footer() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Phone size={18} color="var(--color-rani-pink)" />
                 <a href="tel:9502215750" style={{ color: '#FFF', textDecoration: 'none', fontWeight: 700 }}>
-                  95022 15750
+                  +91  95022 15750
                 </a>
               </div>
 

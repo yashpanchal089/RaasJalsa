@@ -78,7 +78,7 @@ export default function GarbaCarousel() {
     >
       <div className="container" style={{ position: 'relative', zIndex: 5 }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 28px auto' }}>
           <span className="badge-festive" style={{ marginBottom: '16px' }}>
             <Sparkles size={14} color="var(--color-rani-pink)" />
             IMMERSIVE VISUAL GALLERY

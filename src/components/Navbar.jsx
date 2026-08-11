@@ -175,79 +175,45 @@ export default function Navbar({ onOpenReserve }) {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'fixed',
               inset: 0,
               zIndex: 99,
-              background: 'linear-gradient(170deg, rgba(26, 4, 43, 0.98) 0%, rgba(42, 8, 69, 0.97) 100%)',
+              background: 'linear-gradient(170deg, rgba(26, 4, 43, 0.98) 0%, rgba(42, 8, 69, 0.98) 100%)',
               backdropFilter: 'blur(24px)',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
               alignItems: 'center',
-              gap: '24px',
-              padding: '40px 20px',
+              paddingTop: '95px',
+              paddingBottom: '90px',
+              paddingLeft: '20px',
+              paddingRight: '20px',
+              overflowY: 'auto',
+              gap: '16px',
             }}
           >
-            <img
-              src="/images/logo.png"
-              alt="Raas Jalsa Logo"
-              style={{
-                height: '80px',
-                width: 'auto',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 6px 16px rgba(212, 175, 55, 0.4))',
-              }}
-            />
-
-            <div style={{ textAlign: 'center' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  color: 'var(--color-gold-bright)',
-                  fontSize: '2.2rem',
-                  letterSpacing: '0.04em',
-                  display: 'block',
-                  lineHeight: 1.1,
-                }}
-              >
-                RAAS JALSA
-              </span>
-              <span
-                style={{
-                  fontSize: '0.78rem',
-                  letterSpacing: '0.22em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255, 255, 255, 0.75)',
-                  fontWeight: 700,
-                  marginTop: '4px',
-                  display: 'block',
-                }}
-              >
-                GARBA & DANDIYA COMMUNITY
-              </span>
-            </div>
-
-            <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: '10px' }}>
+            <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', width: '100%', marginTop: '10px' }}>
               {navLinks.map((link, idx) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ scale: 1.1, color: 'var(--color-gold-bright)' }}
+                  transition={{ delay: idx * 0.04 }}
+                  whileHover={{ scale: 1.05, color: 'var(--color-gold-bright)' }}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     color: '#FFFFFF',
                     textDecoration: 'none',
-                    fontSize: '1.45rem',
+                    fontSize: '1.25rem',
                     fontWeight: 700,
-                    letterSpacing: '0.05em',
+                    letterSpacing: '0.04em',
+                    padding: '4px 0',
                   }}
                 >
                   {link.name}
@@ -255,24 +221,17 @@ export default function Navbar({ onOpenReserve }) {
               ))}
             </nav>
 
-            <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', maxWidth: '280px' }}>
+            <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', maxWidth: '280px' }}>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenReserve();
                 }}
                 className="btn-primary"
-                style={{ width: '100%', padding: '14px', fontSize: '0.95rem' }}
+                style={{ width: '100%', padding: '12px', fontSize: '0.9rem' }}
               >
                 RESERVE YOUR PLACE
               </button>
-              <a
-                href="tel:9502215750"
-                className="btn-secondary"
-                style={{ width: '100%', textAlign: 'center', border: '1px solid var(--color-gold)', padding: '12px' }}
-              >
-                <Phone size={16} /> CALL 95022 15750
-              </a>
             </div>
           </motion.div>
         )}

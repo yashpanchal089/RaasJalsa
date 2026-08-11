@@ -273,25 +273,35 @@ export default function TestimonialsSection() {
                   {testimonials[currentIndex].tag}
                 </span>
 
-                {/* Bottom Student Details */}
+                {/* Bottom Card Tag - Only Batch of 2026 */}
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '22px',
-                    left: '22px',
-                    right: '22px',
+                    bottom: '20px',
+                    left: '20px',
+                    right: '20px',
+                    textAlign: 'center',
+                    zIndex: 10,
                   }}
                 >
-                  <Quote size={22} color="var(--color-gold-bright)" style={{ marginBottom: '6px', opacity: 0.9 }} />
-                  <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.95)', fontStyle: 'italic', marginBottom: '8px', lineHeight: 1.4 }}>
-                    {testimonials[currentIndex].quote}
-                  </p>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#FFF' }}>
-                    {testimonials[currentIndex].name}
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--color-gold-bright)', fontWeight: 600 }}>
-                    {testimonials[currentIndex].role}
-                  </div>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '8px 22px',
+                      borderRadius: '99px',
+                      background: 'rgba(245, 235, 224, 0.94)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1.5px solid var(--color-gold)',
+                      color: 'var(--color-purple)',
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: '1.05rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.05em',
+                      boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
+                    }}
+                  >
+                    Batch of 2026
+                  </span>
                 </div>
               </div>
             </motion.div>

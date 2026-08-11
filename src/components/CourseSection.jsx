@@ -47,7 +47,7 @@ export default function CourseSection({ onOpenReserve }) {
               marginBottom: '16px',
             }}
           >
-            THE FOUNDATION COURSE — <br />
+            THE FOUNDATION COURSE <br />
             <span className="text-magenta-gradient">GARBA & DANDIYA</span>
           </h2>
 

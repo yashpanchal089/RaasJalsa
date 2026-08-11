@@ -23,6 +23,7 @@ export default function VenueSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="venue-outer-container"
           style={{
             borderRadius: '28px',
             padding: '12px',
@@ -33,12 +34,13 @@ export default function VenueSection() {
           }}
         >
           <div
+            className="venue-card-inner"
             style={{
               borderRadius: '20px',
               background: '#FCF8F2',
               padding: '36px',
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '36px',
               alignItems: 'center',
             }}
@@ -50,24 +52,26 @@ export default function VenueSection() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '6px 16px',
+                  padding: '6px 14px',
                   borderRadius: '99px',
                   background: 'rgba(138, 11, 93, 0.12)',
                   color: 'var(--color-magenta)',
                   fontWeight: 800,
-                  fontSize: '0.8rem',
+                  fontSize: '0.76rem',
                   marginBottom: '16px',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.06em',
+                  maxWidth: '100%',
+                  flexWrap: 'wrap',
                 }}
               >
-                <Sparkles size={16} /> CONTACT & REGISTRATION HELPLINE
+                <Sparkles size={14} /> CONTACT & REGISTRATION HELPLINE
               </div>
 
               <h3
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+                  fontSize: 'clamp(1.7rem, 3vw, 2.5rem)',
                   color: 'var(--color-purple)',
                   marginBottom: '12px',
                   lineHeight: 1.2,
@@ -76,12 +80,13 @@ export default function VenueSection() {
                 Get In Touch With <span className="text-magenta-gradient">Raas Jalsa</span>
               </h3>
 
-              <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginBottom: '28px', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
                 Have questions about batch timings, group packages, or Navratri 2026 registration? Call or WhatsApp our team directly!
               </p>
 
               {/* Both Phone Numbers Box */}
               <div
+                className="venue-helpline-box"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -90,7 +95,7 @@ export default function VenueSection() {
                   borderRadius: '20px',
                   background: '#F5EBE0',
                   border: '1.5px solid var(--color-gold)',
-                  marginBottom: '28px',
+                  marginBottom: '24px',
                 }}
               >
                 {/* Phone Number 1 */}
@@ -112,6 +117,7 @@ export default function VenueSection() {
                       </div>
                       <a
                         href={`tel:${primaryPhone.replace(/\s+/g, '')}`}
+                        className="venue-phone-text"
                         style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-purple)', textDecoration: 'none' }}
                       >
                         {primaryPhone}
@@ -150,6 +156,7 @@ export default function VenueSection() {
                         href={`https://wa.me/919502215750`}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="venue-phone-text"
                         style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-purple)', textDecoration: 'none' }}
                       >
                         {secondaryPhone}
@@ -177,7 +184,7 @@ export default function VenueSection() {
                 overflow: 'hidden',
                 border: '1.5px solid var(--color-gold)',
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
-                height: '380px',
+                height: '340px',
                 position: 'relative',
               }}
             >
@@ -195,6 +202,28 @@ export default function VenueSection() {
           </div>
         </motion.div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .venue-outer-container {
+            padding: 6px !important;
+            border-radius: 20px !important;
+          }
+          .venue-card-inner {
+            padding: 16px 14px !important;
+            gap: 20px !important;
+            border-radius: 16px !important;
+            grid-template-columns: 1fr !important;
+          }
+          .venue-helpline-box {
+            padding: 14px 12px !important;
+            border-radius: 14px !important;
+          }
+          .venue-phone-text {
+            font-size: 1.05rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

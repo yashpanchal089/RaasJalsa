@@ -13,6 +13,7 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import ReserveModal from './components/ReserveModal';
 import MobileStickyBar from './components/MobileStickyBar';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   const [isReserveModalOpen, setIsReserveModalOpen] = useState(false);
@@ -74,6 +75,9 @@ export default function App() {
 
       {/* Mobile Sticky Quick Action Bar */}
       <MobileStickyBar onOpenReserve={() => handleOpenReserve()} />
+
+      {/* Bottom Center Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

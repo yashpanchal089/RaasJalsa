@@ -8,8 +8,6 @@ export default function InstagramGallery() {
     { id: 2, image: '/images/community-2.jpg', caption: 'Dandiya stick precision & partner beats! #FoundationCourse' },
     { id: 3, image: '/images/community-3.jpg', caption: 'Warm studio batch vibes in Hyderabad! #Navratri2026' },
     { id: 4, image: '/images/community-4.jpg', caption: 'Pure festive grace & high energy garba! #GarbaCommunity' },
-    { id: 5, image: '/images/instructor.png', caption: 'Meet our passionate instructors! #DanceHyderabad' },
-    { id: 6, image: '/images/community-1.jpg', caption: 'Step into the festive season! #RaasJalsa' },
   ];
 
   return (
@@ -85,6 +83,7 @@ export default function InstagramGallery() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
+                  objectPosition: 'center center',
                   transition: 'transform 0.5s ease',
                 }}
               />
@@ -133,22 +132,19 @@ export default function InstagramGallery() {
       <style>{`
         .insta-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 18px;
-          margin-bottom: 40px;
-        }
-
-        @media (min-width: 992px) {
-          .insta-grid {
-            grid-template-columns: repeat(6, 1fr) !important;
-          }
+          max-width: 900px;
+          margin: 0 auto 40px auto;
+          justify-content: center;
+          align-items: center;
         }
 
         @media (max-width: 768px) {
           .insta-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 10px !important;
-            margin-bottom: 24px !important;
+            gap: 12px !important;
+            margin-bottom: 28px !important;
           }
           .insta-tile {
             border-radius: 12px !important;
