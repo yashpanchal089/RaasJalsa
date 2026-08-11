@@ -357,10 +357,10 @@ export default function Hero({ onOpenReserve }) {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3 21L19 5" stroke="#C59B27" strokeWidth="2.8" strokeLinecap="round"/>
-                      <path d="M5 19L21 3" stroke="#E31C79" strokeWidth="2.8" strokeLinecap="round"/>
-                      <circle cx="19" cy="5" r="1.8" fill="#D4AF37"/>
-                      <circle cx="21" cy="3" r="1.8" fill="#E31C79"/>
+                      <path d="M3 21L19 5" stroke="#C59B27" strokeWidth="2.8" strokeLinecap="round" />
+                      <path d="M5 19L21 3" stroke="#E31C79" strokeWidth="2.8" strokeLinecap="round" />
+                      <circle cx="19" cy="5" r="1.8" fill="#D4AF37" />
+                      <circle cx="21" cy="3" r="1.8" fill="#E31C79" />
                     </svg>
                   </motion.div>
                   <div style={{ textAlign: 'left' }}>
@@ -483,10 +483,10 @@ export default function Hero({ onOpenReserve }) {
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '520px',
-                borderRadius: '28px',
-                padding: '12px',
-                background: 'linear-gradient(135deg, rgba(197,155,39,0.7) 0%, rgba(227,28,121,0.6) 50%, rgba(59,9,84,0.85) 100%)',
+                maxWidth: '460px',
+                borderRadius: '24px',
+                padding: '8px',
+                background: 'linear-gradient(135deg, var(--color-gold) 0%, var(--color-rani-pink) 50%, var(--color-purple) 100%)',
                 boxShadow: '0 25px 50px rgba(44, 26, 29, 0.2)',
               }}
             >
@@ -494,119 +494,25 @@ export default function Hero({ onOpenReserve }) {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  aspectRatio: '4/5',
-                  borderRadius: '20px',
+                  aspectRatio: '3/4',
+                  borderRadius: '18px',
                   overflow: 'hidden',
-                  background: '#2C1A1D',
+                  background: '#FFFFFF',
                 }}
               >
                 <img
-                  src="/images/hero.png"
-                  alt="Raas Jalsa Garba Dance Class"
+                  src="/images/instructors-final.jpg"
+                  alt="Raas Jalsa Lead Garba Instructors"
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    transition: 'transform 0.8s ease',
+                    objectPosition: 'center 10%',
+                    transition: 'transform 0.5s ease',
                   }}
                 />
-
-                {/* Floating Bottom Card Tag */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '20px',
-                    left: '20px',
-                    right: '20px',
-                    padding: '16px 20px',
-                    borderRadius: '16px',
-                    background: 'rgba(245, 235, 224, 0.94)',
-                    backdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(197, 155, 39, 0.5)',
-                    color: 'var(--color-purple)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--color-magenta)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 800 }}>
-                      NAVRATRI PREPARATION
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700 }}>
-                      4 Classes A Month
-                    </div>
-                  </div>
-                  <span
-                    style={{
-                      background: 'var(--color-rani-pink)',
-                      color: '#FFF',
-                      padding: '6px 14px',
-                      borderRadius: '99px',
-                      fontSize: '0.85rem',
-                      fontWeight: 700,
-                    }}
-                  >
-                    REGISTER NOW
-                  </span>
-                </div>
               </div>
             </div>
-
-            {/* Circular Garba Ring Badge Floating */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-              style={{
-                position: 'absolute',
-                top: '-25px',
-                right: '-10px',
-                width: '120px',
-                height: '120px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--color-rani-pink), var(--color-magenta))',
-                border: '2px solid var(--color-gold)',
-                color: '#FFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                padding: '10px',
-                fontSize: '0.78rem',
-                fontWeight: 800,
-                letterSpacing: '0.1em',
-                boxShadow: '0 10px 25px rgba(227,28,121,0.35)',
-                zIndex: 6,
-              }}
-            >
-              AUTHENTIC GARBA TECHNIQUE
-            </motion.div>
-
-            {/* Additional Dandiya Floating Badge Bottom Left */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              style={{
-                position: 'absolute',
-                bottom: '-15px',
-                left: '-10px',
-                background: 'var(--color-purple)',
-                color: '#FFF',
-                padding: '12px 20px',
-                borderRadius: '16px',
-                border: '1.5px solid var(--color-gold)',
-                boxShadow: '0 10px 25px rgba(59, 9, 84, 0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                zIndex: 6,
-              }}
-            >
-              <Zap size={18} color="var(--color-gold)" />
-              <span style={{ fontSize: '0.82rem', fontWeight: 800 }}>DANDIYA RHYTHM DRILLS</span>
-            </motion.div>
           </motion.div>
 
         </div>
