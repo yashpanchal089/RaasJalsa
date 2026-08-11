@@ -66,9 +66,9 @@ export default function AboutSection() {
                 }}
               >
                 <img
-                  src="/images/instructor.png"
-                  alt="Raas Jalsa Instructor"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  src="/images/about-instructors.jpg"
+                  alt="Raas Jalsa Lead Garba Instructors"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
                 />
                 
                 {/* Overlay Badge */}
