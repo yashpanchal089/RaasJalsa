@@ -6,24 +6,39 @@ export default function GarbaCarousel() {
   const slides = [
     {
       id: 1,
-      image: '/images/garba-1.png',
-      tag: 'GARBA',
-      title: 'Authentic Garba Formations',
-      subtitle: 'Master traditional circle steps, rhythmic grace, and synchronized group energy.',
+      image: '/images/community-1.jpg',
+      tag: 'COMMUNITY',
+      title: 'Warm Festive Garba Family',
+      subtitle: 'Experience authentic Gujarati Garba culture with our energetic studio community.',
+      fit: 'cover',
+      objectPosition: 'center',
     },
     {
       id: 2,
-      image: '/images/garba-2.png',
-      tag: 'DANDIYA',
-      title: 'Precision Dandiya Technique',
-      subtitle: 'Learn stick coordination, partner beats, speed variation and signature moves.',
+      image: '/images/community-2.jpg',
+      tag: 'DANDIYA DRILLS',
+      title: 'Precision Dandiya & Stick Beats',
+      subtitle: 'Learn stick coordination, partner formations, speed variation and signature moves.',
+      fit: 'cover',
+      objectPosition: 'center',
     },
     {
       id: 3,
-      image: '/images/garba-3.png',
-      tag: 'NAVRATRI',
-      title: 'Navratri Ready Energy',
+      image: '/images/community-3.jpg',
+      tag: 'STUDIO BATCH',
+      title: 'Interactive Studio Sessions',
+      subtitle: 'Step-by-step guidance designed for all skill levels from complete beginners to advanced.',
+      fit: 'cover',
+      objectPosition: 'center 30%',
+    },
+    {
+      id: 4,
+      image: '/images/community-4.jpg',
+      tag: 'NAVRATRI READY',
+      title: 'High Energy Raas Celebrations',
       subtitle: 'Build confidence on the dance floor and express yourself with festive elegance.',
+      fit: 'cover',
+      objectPosition: 'center',
     },
   ];
 
@@ -86,13 +101,13 @@ export default function GarbaCarousel() {
         {/* Carousel Container */}
         <div style={{ position: 'relative', maxWidth: '1100px', margin: '0 auto' }}>
           <div
+            className="carousel-card-container"
             style={{
               position: 'relative',
               borderRadius: '28px',
               overflow: 'hidden',
               border: '1.5px solid rgba(197, 155, 39, 0.4)',
               boxShadow: '0 20px 45px rgba(44, 26, 29, 0.12)',
-              height: '520px',
               background: '#2C1A1D',
             }}
           >
@@ -105,13 +120,32 @@ export default function GarbaCarousel() {
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 style={{ width: '100%', height: '100%', position: 'relative' }}
               >
+                {/* Ambient Blurred Background for seamless fill */}
+                <img
+                  src={slides[currentIndex].image}
+                  alt=""
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: 'blur(20px) brightness(0.55)',
+                    transform: 'scale(1.12)',
+                  }}
+                />
+
+                {/* Main Foreground Image */}
                 <img
                   src={slides[currentIndex].image}
                   alt={slides[currentIndex].title}
                   style={{
+                    position: 'relative',
+                    zIndex: 2,
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
+                    objectFit: slides[currentIndex].fit || 'cover',
+                    objectPosition: slides[currentIndex].objectPosition || 'center',
                   }}
                 />
 
@@ -121,12 +155,13 @@ export default function GarbaCarousel() {
                     position: 'absolute',
                     inset: 0,
                     background:
-                      'linear-gradient(180deg, rgba(44,26,29,0.1) 0%, rgba(44,26,29,0.4) 50%, rgba(35,16,20,0.92) 100%)',
+                      'linear-gradient(180deg, rgba(44,26,29,0.05) 0%, rgba(44,26,29,0.3) 50%, rgba(35,16,20,0.92) 100%)',
                   }}
                 />
 
                 {/* Content Overlay */}
                 <div
+                  className="carousel-content-box"
                   style={{
                     position: 'absolute',
                     bottom: '40px',
@@ -155,6 +190,7 @@ export default function GarbaCarousel() {
                   </div>
 
                   <h3
+                    className="carousel-title"
                     style={{
                       fontFamily: 'var(--font-serif)',
                       fontSize: 'clamp(1.6rem, 3vw, 2.5rem)',
@@ -166,6 +202,7 @@ export default function GarbaCarousel() {
                   </h3>
 
                   <p
+                    className="carousel-subtitle"
                     style={{
                       color: 'rgba(255, 255, 255, 0.9)',
                       fontSize: '1.05rem',
@@ -261,6 +298,46 @@ export default function GarbaCarousel() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .carousel-card-container {
+          height: 520px;
+        }
+
+        @media (max-width: 768px) {
+          .carousel-card-container {
+            height: 440px !important;
+          }
+          .carousel-content-box {
+            bottom: 20px !important;
+            left: 20px !important;
+            right: 20px !important;
+          }
+          .carousel-title {
+            font-size: 1.45rem !important;
+          }
+          .carousel-subtitle {
+            font-size: 0.88rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .carousel-card-container {
+            height: 380px !important;
+          }
+          .carousel-content-box {
+            bottom: 16px !important;
+            left: 14px !important;
+            right: 14px !important;
+          }
+          .carousel-title {
+            font-size: 1.25rem !important;
+          }
+          .carousel-subtitle {
+            font-size: 0.8rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -4,12 +4,12 @@ import { Instagram, Sparkles } from 'lucide-react';
 
 export default function InstagramGallery() {
   const instaTiles = [
-    { id: 1, image: '/images/hero.png', caption: 'Navratri energy loading! #RaasJalsa #GarbaHyderabad' },
-    { id: 2, image: '/images/garba-1.png', caption: 'Garba circles in Hyderabad! #FoundationCourse' },
-    { id: 3, image: '/images/garba-2.png', caption: 'Dandiya stick precision! #Navratri2026' },
-    { id: 4, image: '/images/garba-3.png', caption: 'Pure festive grace. #GarbaCommunity' },
+    { id: 1, image: '/images/community-1.jpg', caption: 'Navratri energy loading! #RaasJalsa #GarbaHyderabad' },
+    { id: 2, image: '/images/community-2.jpg', caption: 'Dandiya stick precision & partner beats! #FoundationCourse' },
+    { id: 3, image: '/images/community-3.jpg', caption: 'Warm studio batch vibes in Hyderabad! #Navratri2026' },
+    { id: 4, image: '/images/community-4.jpg', caption: 'Pure festive grace & high energy garba! #GarbaCommunity' },
     { id: 5, image: '/images/instructor.png', caption: 'Meet our passionate instructors! #DanceHyderabad' },
-    { id: 6, image: '/images/hero.png', caption: 'Step into the festive season! #RaasJalsa' },
+    { id: 6, image: '/images/community-1.jpg', caption: 'Step into the festive season! #RaasJalsa' },
   ];
 
   return (
