@@ -23,18 +23,16 @@ export default function Footer() {
           {/* Col 1: Brand Info */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <div
+              <img
+                src="/images/logo.png"
+                alt="Raas Jalsa Logo"
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '50%',
-                  border: '1.5px solid var(--color-gold)',
-                  overflow: 'hidden',
-                  background: '#FFF',
+                  height: '76px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 4px 10px rgba(212, 175, 55, 0.3))',
                 }}
-              >
-                <img src="/images/logo.png" alt="Raas Jalsa Logo" style={{ width: '100%', height: '100%' }} />
-              </div>
+              />
               <div>
                 <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.3rem', color: 'var(--color-gold-bright)', lineHeight: 1 }}>
                   RAAS JALSA

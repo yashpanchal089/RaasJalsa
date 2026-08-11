@@ -79,14 +79,8 @@ export default function WhyRaasJalsa() {
           </p>
         </div>
 
-        {/* 6 Cards Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '28px',
-          }}
-        >
+        {/* 6 Cards Grid - 3 cols on desktop, 2 cols (2 per row) on mobile */}
+        <div className="why-cards-grid">
           {cards.map((card, idx) => {
             const IconComponent = card.icon;
             return (
@@ -179,6 +173,56 @@ export default function WhyRaasJalsa() {
           })}
         </div>
       </div>
+
+      <style>{`
+        .why-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 28px;
+        }
+
+        @media (max-width: 992px) {
+          .why-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .why-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .why-card {
+            padding: 16px 12px !important;
+            border-radius: 18px !important;
+          }
+          .card-icon {
+            width: 40px !important;
+            height: 40px !important;
+            margin-bottom: 10px !important;
+            border-radius: 12px !important;
+          }
+          .card-icon svg {
+            width: 20px !important;
+            height: 20px !important;
+          }
+          .why-card h3 {
+            font-size: 0.82rem !important;
+            margin-bottom: 6px !important;
+            line-height: 1.2 !important;
+          }
+          .why-card p {
+            font-size: 0.74rem !important;
+            line-height: 1.35 !important;
+          }
+          .why-card span {
+            font-size: 1.4rem !important;
+            top: 8px !important;
+            right: 10px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

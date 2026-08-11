@@ -58,15 +58,8 @@ export default function InstagramGallery() {
           </a>
         </div>
 
-        {/* 6 Visual Tiles Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '18px',
-            marginBottom: '40px',
-          }}
-        >
+        {/* 6 Visual Tiles Grid - 2 per row on mobile */}
+        <div className="insta-grid">
           {instaTiles.map((tile) => (
             <motion.a
               key={tile.id}
@@ -138,6 +131,30 @@ export default function InstagramGallery() {
       </div>
 
       <style>{`
+        .insta-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px;
+          margin-bottom: 40px;
+        }
+
+        @media (min-width: 992px) {
+          .insta-grid {
+            grid-template-columns: repeat(6, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .insta-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+            margin-bottom: 24px !important;
+          }
+          .insta-tile {
+            border-radius: 12px !important;
+          }
+        }
+
         .insta-tile:hover .insta-overlay {
           opacity: 1 !important;
         }

@@ -132,7 +132,7 @@ export default function ReserveModal({ isOpen, onClose, selectedPlan = '' }) {
                 Reserve Your Spot
               </h3>
               <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
-                Classes start 1st August 2026. Fill details below for instant reservation.
+                Classes start 1st September 2026. Fill details below for instant reservation.
               </p>
 
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

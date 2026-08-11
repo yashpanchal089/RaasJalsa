@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ChevronLeft, ChevronRight, Sparkles, Quote, Volume2, VolumeX } from 'lucide-react';
 
@@ -30,8 +30,29 @@ export default function TestimonialsSection() {
     },
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [activeModalIndex, setActiveModalIndex] = useState(null);
   const [isMuted, setIsMuted] = useState(false);
+
+  // Auto-play continuous timer: transitions one after another
+  useEffect(() => {
+    if (isPaused || activeModalIndex !== null) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 3800);
+
+    return () => clearInterval(timer);
+  }, [isPaused, activeModalIndex, testimonials.length]);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   const openModal = (index) => {
     setActiveModalIndex(index);
@@ -65,7 +86,7 @@ export default function TestimonialsSection() {
     >
       <div className="container" style={{ position: 'relative', zIndex: 5 }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 60px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 50px auto' }}>
           <span className="badge-festive" style={{ marginBottom: '16px' }}>
             <Sparkles size={14} color="var(--color-rani-pink)" />
             REAL STUDENT TESTIMONIALS
@@ -95,34 +116,85 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Video Cards Grid */}
+        {/* Continuous Auto-Playing Carousel Container */}
         <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '32px',
-            maxWidth: '1100px',
+            position: 'relative',
+            maxWidth: '440px',
             margin: '0 auto',
           }}
         >
-          {testimonials.map((item, index) => (
+          {/* Arrow Buttons */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous testimonial"
+            style={{
+              position: 'absolute',
+              left: '-24px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 20,
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              background: '#FFF',
+              border: '2px solid var(--color-gold)',
+              color: 'var(--color-purple)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next testimonial"
+            style={{
+              position: 'absolute',
+              right: '-24px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 20,
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              background: '#FFF',
+              border: '2px solid var(--color-gold)',
+              color: 'var(--color-purple)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Active Card Slider */}
+          <AnimatePresence mode="wait">
             <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
+              key={currentIndex}
+              initial={{ opacity: 0, x: 50, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -50, scale: 0.95 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                borderRadius: '24px',
+                borderRadius: '28px',
                 overflow: 'hidden',
                 background: '#2C1A1D',
-                border: '1.5px solid rgba(197, 155, 39, 0.35)',
-                boxShadow: '0 20px 40px rgba(44, 26, 29, 0.15)',
+                border: '2px solid rgba(197, 155, 39, 0.45)',
+                boxShadow: '0 20px 45px rgba(44, 26, 29, 0.2)',
                 position: 'relative',
                 cursor: 'pointer',
               }}
-              onClick={() => openModal(index)}
+              onClick={() => openModal(currentIndex)}
             >
               {/* 9:16 Video Container */}
               <div
@@ -130,13 +202,13 @@ export default function TestimonialsSection() {
                   position: 'relative',
                   width: '100%',
                   aspectRatio: '9/16',
-                  maxHeight: '480px',
+                  maxHeight: '520px',
                   background: '#1A042B',
                   overflow: 'hidden',
                 }}
               >
                 <video
-                  src={item.videoSrc}
+                  src={testimonials[currentIndex].videoSrc}
                   muted
                   loop
                   playsInline
@@ -154,19 +226,20 @@ export default function TestimonialsSection() {
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 60%, rgba(35,16,20,0.95) 100%)',
+                    background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 50%, rgba(35,16,20,0.95) 100%)',
                   }}
                 />
 
                 {/* Play Button Trigger Center */}
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.15 }}
                   style={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: '64px',
-                    height: '64px',
+                    width: '68px',
+                    height: '68px',
                     borderRadius: '50%',
                     background: 'linear-gradient(135deg, var(--color-rani-pink), var(--color-magenta))',
                     border: '2px solid var(--color-gold-bright)',
@@ -174,56 +247,75 @@ export default function TestimonialsSection() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 10px 30px rgba(227, 28, 121, 0.4)',
-                    transition: 'transform 0.3s ease',
+                    boxShadow: '0 10px 30px rgba(227, 28, 121, 0.45)',
                   }}
                 >
-                  <Play size={28} style={{ marginLeft: '4px' }} />
-                </div>
+                  <Play size={30} style={{ marginLeft: '4px' }} />
+                </motion.div>
 
                 {/* Top Tag */}
                 <span
                   style={{
                     position: 'absolute',
-                    top: '16px',
-                    left: '16px',
+                    top: '18px',
+                    left: '18px',
                     padding: '6px 14px',
                     borderRadius: '99px',
-                    background: 'rgba(245, 235, 224, 0.92)',
+                    background: 'rgba(245, 235, 224, 0.94)',
                     backdropFilter: 'blur(8px)',
                     border: '1px solid var(--color-gold)',
                     color: 'var(--color-purple)',
-                    fontSize: '0.72rem',
+                    fontSize: '0.75rem',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                   }}
                 >
-                  {item.tag}
+                  {testimonials[currentIndex].tag}
                 </span>
 
                 {/* Bottom Student Details */}
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '20px',
-                    left: '20px',
-                    right: '20px',
+                    bottom: '22px',
+                    left: '22px',
+                    right: '22px',
                   }}
                 >
-                  <Quote size={20} color="var(--color-gold-bright)" style={{ marginBottom: '6px', opacity: 0.9 }} />
-                  <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.92)', fontStyle: 'italic', marginBottom: '8px', lineHeight: 1.4 }}>
-                    {item.quote}
+                  <Quote size={22} color="var(--color-gold-bright)" style={{ marginBottom: '6px', opacity: 0.9 }} />
+                  <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.95)', fontStyle: 'italic', marginBottom: '8px', lineHeight: 1.4 }}>
+                    {testimonials[currentIndex].quote}
                   </p>
-                  <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#FFF' }}>
-                    {item.name}
+                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#FFF' }}>
+                    {testimonials[currentIndex].name}
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-gold-bright)' }}>
-                    {item.role}
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-gold-bright)', fontWeight: 600 }}>
+                    {testimonials[currentIndex].role}
                   </div>
                 </div>
               </div>
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          {/* Dots Indicator */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                style={{
+                  width: currentIndex === idx ? '28px' : '10px',
+                  height: '10px',
+                  borderRadius: '99px',
+                  background: currentIndex === idx ? 'var(--color-rani-pink)' : 'rgba(197, 155, 39, 0.4)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

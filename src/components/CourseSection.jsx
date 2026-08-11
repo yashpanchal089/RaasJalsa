@@ -4,7 +4,7 @@ import { Calendar, Clock, Sparkles, Award, CheckCircle2, Star, ArrowRight, Phone
 
 export default function CourseSection({ onOpenReserve }) {
   const courseDetails = [
-    { label: 'STARTING DATE', value: '1st August, 2026', sub: 'Saturday Batch', icon: Calendar, color: 'var(--color-rani-pink)' },
+    { label: 'STARTING', value: 'September, 2026', sub: '', icon: Calendar, color: 'var(--color-rani-pink)' },
     { label: 'TIMING', value: '5:00 PM – 7:00 PM', sub: '(Tentative)', icon: Clock, color: 'var(--color-orange)' },
     { label: 'FREQUENCY', value: '4 Classes A Month', sub: 'Weekly Weekend Sessions', icon: Sparkles, color: 'var(--color-teal)' },
     { label: 'CONTACT FOR SEATS', value: '95022 15750', sub: 'Call / WhatsApp Available', icon: Phone, color: 'var(--color-gold)' },

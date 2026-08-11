@@ -1,25 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Calendar, Clock, ArrowRight, Award, Phone, Zap, Music } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Hero({ onOpenReserve }) {
-  const [dandiyaStrikes, setDandiyaStrikes] = useState(0);
+  const [activeSound, setActiveSound] = useState('');
+  const [clapCount, setClapCount] = useState(0);
+  const [dandiyaCount, setDandiyaCount] = useState(0);
+  const currentAudioRef = useRef(null);
 
-  // Interactive Dandiya strike sound visual effect trigger
-  const handleDandiyaClick = (e) => {
-    setDandiyaStrikes((prev) => prev + 1);
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (rect.left + rect.width / 2) / window.innerWidth;
-    const y = (rect.top + rect.height / 2) / window.innerHeight;
+  const playAudioSound = (type, e) => {
+    if (e) e.stopPropagation();
 
-    confetti({
-      particleCount: 35,
-      spread: 60,
-      origin: { x, y },
-      colors: ['#D4AF37', '#E31C79', '#FF6F00', '#0D9488'],
-      scalar: 0.8,
-    });
+    // Immediately stop any currently playing audio track
+    if (currentAudioRef.current) {
+      try {
+        currentAudioRef.current.pause();
+        currentAudioRef.current.currentTime = 0;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    const soundFile = type === 'clap' ? '/Music/Clap.mp3' : '/Music/Dandiya.mp3';
+
+    if (type === 'clap') {
+      setClapCount((prev) => prev + 1);
+    } else {
+      setDandiyaCount((prev) => prev + 1);
+    }
+
+    setActiveSound(type);
+    setTimeout(() => setActiveSound(''), 500);
+
+    try {
+      const audio = new Audio(soundFile);
+      currentAudioRef.current = audio;
+      audio.play().catch((err) => console.log('Audio error:', err));
+    } catch (err) {
+      console.error(err);
+    }
+
+    if (e && e.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: type === 'clap' ? 40 : 35,
+        spread: 65,
+        origin: { x, y },
+        colors:
+          type === 'clap'
+            ? ['#E31C79', '#8A0B5D', '#D4AF37', '#FFF']
+            : ['#D4AF37', '#0D9488', '#D95D09', '#E31C79'],
+        scalar: 0.9,
+      });
+    }
   };
 
   return (
@@ -172,13 +209,6 @@ export default function Hero({ onOpenReserve }) {
           >
             {/* Top Event Tag & Badge Pills */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', marginBottom: '22px' }}>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="badge-festive"
-              >
-                <Sparkles size={14} color="var(--color-rani-pink)" />
-                NAVRATRI 2026
-              </motion.span>
 
               <motion.span
                 whileHover={{ scale: 1.05 }}
@@ -201,42 +231,6 @@ export default function Hero({ onOpenReserve }) {
               </motion.span>
             </div>
 
-            {/* Official Logo & Brand Header */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
-              <motion.div
-                whileHover={{ rotate: 15, scale: 1.1 }}
-                style={{
-                  width: '68px',
-                  height: '68px',
-                  borderRadius: '50%',
-                  border: '2px solid var(--color-gold)',
-                  boxShadow: '0 8px 25px rgba(197, 155, 39, 0.3)',
-                  overflow: 'hidden',
-                  background: '#FFF',
-                  flexShrink: 0,
-                  cursor: 'pointer',
-                }}
-              >
-                <img src="/images/logo.png" alt="Raas Jalsa Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </motion.div>
-              <div>
-                <h2
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.25rem',
-                    color: 'var(--color-magenta)',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    fontWeight: 700,
-                  }}
-                >
-                  RAAS JALSA
-                </h2>
-                <p style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
-                  Garba & Dandiya Community
-                </p>
-              </div>
-            </div>
 
             {/* Main Headline with Animated Reveal */}
             <motion.h1
@@ -251,7 +245,7 @@ export default function Hero({ onOpenReserve }) {
                 marginBottom: '20px',
               }}
             >
-              The Foundation Course — <br />
+              Transform Your Moves In <br />
               <span className="text-magenta-gradient">Garba & Dandiya</span>
             </motion.h1>
 
@@ -269,65 +263,135 @@ export default function Hero({ onOpenReserve }) {
               Step into the spirit of Navratri. Learn authentic technique, build confidence, and dance your way into the festive season!
             </p>
 
-            {/* Interactive Dandiya Strike Banner Component */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              onClick={handleDandiyaClick}
+            {/* Interactive Clap & Dandiya Sound Beats Banner */}
+            <div
               style={{
-                padding: '16px 20px',
-                borderRadius: '20px',
-                background: 'linear-gradient(135deg, rgba(227, 28, 121, 0.1) 0%, rgba(197, 155, 39, 0.15) 100%)',
-                border: '1.5px dashed var(--color-gold)',
+                padding: '16px 18px',
+                borderRadius: '24px',
+                background: 'linear-gradient(135deg, rgba(252, 248, 242, 0.98) 0%, rgba(245, 235, 224, 0.95) 100%)',
+                border: '2px dashed var(--color-gold)',
+                boxShadow: '0 10px 30px rgba(44, 26, 29, 0.08)',
                 marginBottom: '32px',
-                cursor: 'pointer',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '12px',
-                maxWidth: '560px',
+                flexDirection: 'column',
+                gap: '14px',
+                maxWidth: '580px',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div
+              {/* Top Row: Left Side Clap Button & Right Side Dandiya Button Side-by-Side */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                {/* Left: Clap Button */}
+                <motion.div
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => playAudioSound('clap', e)}
                   style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '12px',
-                    background: 'var(--color-magenta)',
-                    color: '#FFF',
+                    flex: 1,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexShrink: 0,
+                    gap: '8px',
+                    padding: '10px 12px',
+                    borderRadius: '16px',
+                    background: activeSound === 'clap'
+                      ? 'linear-gradient(135deg, #E31C79 0%, #8A0B5D 100%)'
+                      : 'linear-gradient(135deg, rgba(227, 28, 121, 0.12) 0%, rgba(138, 11, 93, 0.18) 100%)',
+                    border: '2px solid var(--color-rani-pink)',
+                    boxShadow: '0 4px 15px rgba(227, 28, 121, 0.2)',
+                    cursor: 'pointer',
+                    userSelect: 'none',
                   }}
                 >
-                  <Music size={20} />
-                </div>
-                <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-purple)' }}>
-                    Interactive Dandiya Strike!
+                  <motion.span
+                    animate={{
+                      y: [-3, 3, -3],
+                      rotate: [-6, 6, -6],
+                      scale: activeSound === 'clap' ? [1, 1.3, 1] : [1, 1.05, 1],
+                    }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{ fontSize: '1.4rem', display: 'inline-block' }}
+                  >
+                    👏
+                  </motion.span>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-purple)', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                      TAP CLAP
+                    </div>
+                    <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--color-rani-pink)', marginTop: '2px' }}>
+                      🔊 Play Sound
+                    </div>
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                    Click here to feel the Garba rhythm beat! {dandiyaStrikes > 0 ? `(Clashed ${dandiyaStrikes} times 🎉)` : ''}
+                </motion.div>
+
+                {/* Right: Dandiya Button */}
+                <motion.div
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => playAudioSound('dandiya', e)}
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '10px 12px',
+                    borderRadius: '16px',
+                    background: activeSound === 'dandiya'
+                      ? 'linear-gradient(135deg, #D4AF37 0%, #C59B27 100%)'
+                      : 'linear-gradient(135deg, rgba(197, 155, 39, 0.15) 0%, rgba(212, 175, 55, 0.22) 100%)',
+                    border: '2px solid var(--color-gold)',
+                    boxShadow: '0 4px 15px rgba(197, 155, 39, 0.25)',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                  }}
+                >
+                  <motion.div
+                    animate={{
+                      y: [3, -3, 3],
+                      rotate: [10, -10, 10],
+                      scale: activeSound === 'dandiya' ? [1, 1.3, 1] : [1, 1.05, 1],
+                    }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 21L19 5" stroke="#C59B27" strokeWidth="2.8" strokeLinecap="round"/>
+                      <path d="M5 19L21 3" stroke="#E31C79" strokeWidth="2.8" strokeLinecap="round"/>
+                      <circle cx="19" cy="5" r="1.8" fill="#D4AF37"/>
+                      <circle cx="21" cy="3" r="1.8" fill="#E31C79"/>
+                    </svg>
+                  </motion.div>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-purple)', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                      TAP DANDIYA
+                    </div>
+                    <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--color-orange)', marginTop: '2px' }}>
+                      🎵 Play Sound
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
-              <span
-                style={{
-                  fontSize: '0.72rem',
-                  fontWeight: 800,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  padding: '6px 12px',
-                  borderRadius: '99px',
-                  background: 'var(--color-gold)',
-                  color: 'var(--color-purple)',
-                }}
-              >
-                TAP DANDIYA
-              </span>
-            </motion.div>
+              {/* Bottom Row: Centered Instructions & Live Counters */}
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--color-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                  <Sparkles size={14} color="var(--color-gold)" />
+                  Feel The Festive Beats!
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 600, marginTop: '2px' }}>
+                  Tap Clap 👏 or Dandiya 🥢 above to play live sounds!
+                </div>
+                {(clapCount > 0 || dandiyaCount > 0) && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--color-magenta)', marginTop: '4px' }}
+                  >
+                    🎉 Claps: {clapCount} | Dandiya Hits: {dandiyaCount}
+                  </motion.div>
+                )}
+              </div>
+            </div>
 
             {/* Quick Event Info Strip */}
             <div
