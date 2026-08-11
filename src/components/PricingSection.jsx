@@ -114,15 +114,8 @@ export default function PricingSection({ onOpenReserve }) {
           </div>
         </div>
 
-        {/* 4 Pricing Cards Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
-            alignItems: 'stretch',
-          }}
-        >
+        {/* 4 Pricing Cards Grid - 4 cols on desktop, 2x2 grid on mobile */}
+        <div className="pricing-cards-grid">
           {plans.map((plan, idx) => {
             const IconComponent = plan.icon;
             return (
@@ -150,6 +143,7 @@ export default function PricingSection({ onOpenReserve }) {
                   overflow: 'hidden',
                   transform: plan.featured ? 'scale(1.03)' : 'none',
                 }}
+                className="pricing-card"
               >
                 {/* Featured Badge */}
                 {plan.featured && (
@@ -170,6 +164,7 @@ export default function PricingSection({ onOpenReserve }) {
                       alignItems: 'center',
                       gap: '4px',
                     }}
+                    className="pricing-badge"
                   >
                     <Crown size={14} /> {plan.badge}
                   </div>
@@ -185,6 +180,7 @@ export default function PricingSection({ onOpenReserve }) {
                         background: plan.featured ? 'rgba(197, 155, 39, 0.2)' : 'rgba(138, 11, 93, 0.08)',
                         color: plan.featured ? 'var(--color-gold-bright)' : 'var(--color-magenta)',
                       }}
+                      className="pricing-icon"
                     >
                       <IconComponent size={20} />
                     </div>
@@ -196,6 +192,7 @@ export default function PricingSection({ onOpenReserve }) {
                         textTransform: 'uppercase',
                         color: plan.featured ? 'var(--color-gold-bright)' : 'var(--color-magenta)',
                       }}
+                      className="pricing-title"
                     >
                       {plan.name}
                     </span>
@@ -215,6 +212,7 @@ export default function PricingSection({ onOpenReserve }) {
                           lineHeight: 1,
                           color: plan.featured ? '#FFFFFF' : 'var(--color-purple)',
                         }}
+                        className="pricing-price-num"
                       >
                         {plan.price}
                       </span>
@@ -222,12 +220,18 @@ export default function PricingSection({ onOpenReserve }) {
                         /-
                       </span>
                     </div>
-                    <div style={{ fontSize: '0.82rem', marginTop: '4px', fontWeight: 600, color: plan.featured ? 'rgba(255,255,255,0.85)' : 'var(--text-muted)' }}>
+                    <div
+                      style={{ fontSize: '0.82rem', marginTop: '4px', fontWeight: 600, color: plan.featured ? 'rgba(255,255,255,0.85)' : 'var(--text-muted)' }}
+                      className="pricing-period"
+                    >
                       {plan.period}
                     </div>
                   </div>
 
-                  <p style={{ fontSize: '0.88rem', color: plan.featured ? 'rgba(255,255,255,0.8)' : 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.5 }}>
+                  <p
+                    style={{ fontSize: '0.88rem', color: plan.featured ? 'rgba(255,255,255,0.8)' : 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.5 }}
+                    className="pricing-desc"
+                  >
                     {plan.desc}
                   </p>
 
@@ -236,7 +240,7 @@ export default function PricingSection({ onOpenReserve }) {
                   {/* Benefits */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
                     {plan.benefits.map((b, i) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem' }}>
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem' }} className="pricing-benefit-item">
                         <Check size={16} color={plan.featured ? 'var(--color-gold-bright)' : 'var(--color-magenta)'} />
                         <span style={{ color: plan.featured ? 'rgba(255,255,255,0.95)' : 'var(--text-dark)', fontWeight: 500 }}>
                           {b}
@@ -249,7 +253,7 @@ export default function PricingSection({ onOpenReserve }) {
                 {/* CTA Button */}
                 <button
                   onClick={() => onOpenReserve(plan.name)}
-                  className={plan.featured ? 'btn-primary' : 'btn-secondary'}
+                  className={(plan.featured ? 'btn-primary' : 'btn-secondary') + ' pricing-cta-btn'}
                   style={{
                     width: '100%',
                     padding: '14px 20px',
@@ -264,6 +268,70 @@ export default function PricingSection({ onOpenReserve }) {
           })}
         </div>
       </div>
+
+      <style>{`
+        .pricing-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          align-items: stretch;
+        }
+
+        @media (max-width: 1100px) {
+          .pricing-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .pricing-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .pricing-card {
+            padding: 16px 12px 14px 12px !important;
+            border-radius: 18px !important;
+            transform: none !important;
+          }
+          .pricing-badge {
+            font-size: 0.65rem !important;
+            padding: 4px 10px !important;
+          }
+          .pricing-icon {
+            padding: 6px !important;
+            border-radius: 8px !important;
+          }
+          .pricing-title {
+            font-size: 0.72rem !important;
+            letter-spacing: 0.04em !important;
+          }
+          .pricing-price-num {
+            font-size: 1.8rem !important;
+          }
+          .pricing-period {
+            font-size: 0.7rem !important;
+          }
+          .pricing-desc {
+            font-size: 0.74rem !important;
+            margin-bottom: 12px !important;
+            line-height: 1.3 !important;
+          }
+          .pricing-benefit-item {
+            font-size: 0.74rem !important;
+            gap: 4px !important;
+          }
+          .pricing-benefit-item svg {
+            width: 14px !important;
+            height: 14px !important;
+          }
+          .pricing-cta-btn {
+            padding: 10px 8px !important;
+            font-size: 0.72rem !important;
+            gap: 4px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

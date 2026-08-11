@@ -151,6 +151,7 @@ export default function Hero({ onOpenReserve }) {
           zIndex: 3,
           opacity: 0.85,
         }}
+        className="hero-dandiya-left"
       >
         <div
           style={{
@@ -182,6 +183,7 @@ export default function Hero({ onOpenReserve }) {
           zIndex: 3,
           opacity: 0.85,
         }}
+        className="hero-dandiya-right"
       >
         <div
           style={{
@@ -614,6 +616,24 @@ export default function Hero({ onOpenReserve }) {
         @media (min-width: 992px) {
           .hero-grid {
             grid-template-columns: 1.15fr 0.85fr !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-dandiya-left {
+            left: auto !important;
+            right: 8px !important;
+            top: 55px !important;
+            transform: scale(0.6) rotate(-22deg) !important;
+            opacity: 0.85 !important;
+            z-index: 1 !important;
+          }
+          .hero-dandiya-right {
+            right: 8px !important;
+            bottom: 4% !important;
+            transform: scale(0.6) rotate(22deg) !important;
+            opacity: 0.85 !important;
+            z-index: 1 !important;
           }
         }
       `}</style>
