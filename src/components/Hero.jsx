@@ -501,13 +501,13 @@ export default function Hero({ onOpenReserve }) {
                 }}
               >
                 <img
-                  src="/images/instructors-final.jpg"
+                  src="/images/instructors-real.jpg"
                   alt="Raas Jalsa Lead Garba Instructors"
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'center 10%',
+                    objectPosition: 'center 15%',
                     transition: 'transform 0.5s ease',
                   }}
                 />
